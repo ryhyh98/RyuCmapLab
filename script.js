@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             // Generate these IDs from your EmailJS dashboard
-            const serviceID = 'service_4m9ix1g';
+            const serviceID = 'service_ci36qh6';
             const templateID = 'template_2bpu6tq';
 
             emailjs.sendForm(serviceID, templateID, this)
