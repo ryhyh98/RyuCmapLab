@@ -13,6 +13,13 @@
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('fsSq-Dxx2o0EmK3s8');
+        })();
+    </script>
 </head>
 
 <body>
@@ -189,15 +196,15 @@
                             </span>
                         </div>
                     </div>
-                    <form class="contact-form">
+                    <form class="contact-form" id="contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="이름" required>
+                            <input type="text" name="name" placeholder="이름" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="이메일" required>
+                            <input type="email" name="email" placeholder="이메일" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="문의 내용" rows="5" required></textarea>
+                            <textarea name="message" placeholder="문의 내용" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">보내기</button>
                     </form>

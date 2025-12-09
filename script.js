@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth Scroll for Anchor Links (Polyfill-like behavior if needed, but CSS scroll-behavior usually handles it)
+    // Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -51,13 +51,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Simple Form Submission Handler (Prevent default for demo)
-    const contactForm = document.querySelector('.contact-form');
+    // EmailJS Form Submission Handler
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('문의가 접수되었습니다. (데모 기능)');
-            contactForm.reset();
+        contactForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Show loading state (optional)
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = '보내는 중...';
+            submitBtn.disabled = true;
+
+            // Generate these IDs from your EmailJS dashboard
+            const serviceID = 'service_4m9ix1g';
+            const templateID = 'template_2bpu6tq';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    alert('문의가 성공적으로 발송되었습니다!');
+                    contactForm.reset();
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }, (err) => {
+                    alert('발송에 실패했습니다. 다시 시도해 주세요.\n에러: ' + JSON.stringify(err));
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                });
         });
     }
 });
